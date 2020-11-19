@@ -1,5 +1,5 @@
 {% set name = "ipysankeywidget" %}
-{% set version = "0.3.0" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: baeb5d3b95aad3b860cb1437ab3cabf1348358d230f4e18819602548673f9ef0
+  sha256: 44c5339a385510eee5c5b491f9dbdc2a60389a9d7a8a5ef909c16e76f5490fd0
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
@@ -31,7 +31,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENCE
-  summary: 'IPython / Jupyter Sankey diagram widget'
+  summary: IPython / Jupyter Sankey diagram widget
 
   description: |
     Display Sankey diagrams in Jupyter notebooks, using d3-sankey-diagram.
