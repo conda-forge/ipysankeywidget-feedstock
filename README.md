@@ -5,9 +5,13 @@ Home: http://github.com/ricklupton/ipysankeywidget
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ipysankeywidget-feedstock/blob/master/LICENSE.txt)
 
 Summary: IPython / Jupyter Sankey diagram widget
+
+Development: https://github.com/ricklupton/ipysankeywidget
+
+Documentation: https://github.com/ricklupton/ipysankeywidget
 
 Display Sankey diagrams in Jupyter notebooks, using d3-sankey-diagram.
 
