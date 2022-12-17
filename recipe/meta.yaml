@@ -15,16 +15,28 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
+  build:
+    - nodejs >=16
   host:
-    - python >=3.6
+    - python >=3.7
     - pip
-  run:
-    - python >=3.6
-    - ipywidgets >=7.0.0
+    - jupyter
+    - jupyterlab =3
+    - jupyter-packaging =0.7
+ run:
+    - python >=3.7
+    - ipywidgets >=7.6.0,<9
 
 test:
   imports:
     - ipysankeywidget
+  commands:
+    - test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-sankey-widget/extension.js                             # [unix]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-sankey-widget/index.js                                 # [unix]
+    - test -f ${PREFIX}/share/jupyter/labextensions/jupyter-sankey-widget/package.json                            # [unix]
+    - if not exist %PREFIX%\\share\\jupyter\\nbextensions\\jupyter-sankey-widget\\extension.js (exit 1)           # [win]
+    - if not exist %PREFIX%\\share\\jupyter\\nbextensions\\jupyter-sankey-widget\\index.js (exit 1)               # [win]
+    - if not exist %PREFIX%\\share\\jupyter\\labextensions\\jupyter-sankey-widget\\package.json (exit 1)          # [win]
 
 about:
   home: http://github.com/ricklupton/ipysankeywidget
