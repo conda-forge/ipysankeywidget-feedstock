@@ -1,5 +1,5 @@
 {% set name = "ipysankeywidget" %}
-{% set version = "0.4.2" %}
+{% set version = "0.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 666a8301c0342a8be03b3791ebde29a140e8085330cb18e829fe2c47dca57856
+  sha256: ed868df0b68ed9c14ad6372a4cec5db99eb43f441b3b4050bc1b454fb817902f
 
 build:
   noarch: python
@@ -15,16 +15,28 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
+  build:
+    - nodejs >=16
   host:
-    - python >=3.6
+    - python >=3.7
     - pip
+    - jupyter
+    - jupyterlab =3
+    - jupyter-packaging =0.7
   run:
-    - python >=3.6
-    - ipywidgets >=7.0.0
+    - python >=3.7
+    - ipywidgets >=7.6.0,<9
 
 test:
   imports:
     - ipysankeywidget
+  commands:
+    - test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-sankey-widget/extension.js                             # [unix]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/jupyter-sankey-widget/index.js                                 # [unix]
+    - test -f ${PREFIX}/share/jupyter/labextensions/jupyter-sankey-widget/package.json                            # [unix]
+    - if not exist %PREFIX%\\share\\jupyter\\nbextensions\\jupyter-sankey-widget\\extension.js (exit 1)           # [win]
+    - if not exist %PREFIX%\\share\\jupyter\\nbextensions\\jupyter-sankey-widget\\index.js (exit 1)               # [win]
+    - if not exist %PREFIX%\\share\\jupyter\\labextensions\\jupyter-sankey-widget\\package.json (exit 1)          # [win]
 
 about:
   home: http://github.com/ricklupton/ipysankeywidget
