@@ -6,28 +6,30 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: ed868df0b68ed9c14ad6372a4cec5db99eb43f441b3b4050bc1b454fb817902f
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   build:
     - nodejs >=16
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
     - jupyter
     - jupyterlab =3
     - jupyter-packaging =0.7
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - ipywidgets >=7.6.0,<9
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - ipysankeywidget
   commands:
