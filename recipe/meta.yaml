@@ -1,13 +1,13 @@
 {% set name = "ipysankeywidget" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ed868df0b68ed9c14ad6372a4cec5db99eb43f441b3b4050bc1b454fb817902f
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 214ea1487d0d99e2cdc6bf214c69c9b3f87e782ff6dd6c3f8fd02177d1c5e920
 
 build:
   noarch: python
